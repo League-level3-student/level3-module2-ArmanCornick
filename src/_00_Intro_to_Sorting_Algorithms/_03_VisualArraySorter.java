@@ -1,5 +1,7 @@
 package _00_Intro_to_Sorting_Algorithms;
 
+import java.awt.Color;
+
 import processing.core.PApplet;
 
 /*
@@ -38,22 +40,40 @@ import processing.core.PApplet;
  *     mousePressed variable
  */
 public class _03_VisualArraySorter extends PApplet {
-    static final int WIDTH = 600;
-    static final int HEIGHT = 400;
-
+    static final int WIDTH = 500;
+    static final int HEIGHT = 500;
+    int[] ints;
+    
+    public void mousePressed() {
+    	randomizedNumbers();
+    }
     @Override
     public void settings() {
-        
+        size(500,500);
     }
 
     @Override
     public void setup() {
-        
+    	ints = new int[50];
+    	randomizedNumbers();
+    	noStroke();
     }
+
+	private void randomizedNumbers() {
+		for(int i=0;i<ints.length;i++) {
+    		ints[i] = (int)random(height);
+    	}
+	}
 
     @Override
     public void draw() {
-        
+    	background(0,0,255);
+    	fill(0,255,0);
+    	
+    	for(int e=0;e<ints.length;e++) {
+    		rect(10*e,ints[e],10,-ints[e]);
+    		stepSort(ints);
+    	}
     }
 
     static public void main(String[] passedArgs) {
